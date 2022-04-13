@@ -33,6 +33,28 @@ img {
     color: var(--main-font-hover)
 }
 
+
+.is-fullheight-100vh{
+  height: 100vh;
+}
+
+footer {
+  background-color: var(--main-nav-bg-color);
+  color: var(--main-logo-green);
+}
+
+/* moving letters*/  
+  h1,h2 {
+    font-weight: 200;
+    margin: 0.4em 0;
+  }
+  h1 { font-size: 3.5em; }
+  h2 {
+    color: #888;
+    font-size: 2em;
+  }
+
+
 .font {
   font-family: Raleway;
   font-size: 3.5em;
