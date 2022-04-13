@@ -81,7 +81,34 @@ function polyData(ticker) {
 
   //to do:
   //display Polygon Data: closing price, highest, lowest
-  //create call for news to display on main page
+
+  //create call for news from FMP
+  function stockArticles(data) {
+    var queryArticle = `https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=5&apikey=0d784df591c50ec5f238976a008df8c3`;
+
+      fetch(queryArticle)
+        .then(function(res) {
+            console.log(res);
+            return res.json()
+        })
+        .then(function(data){
+            console.log(data);
+        });
+      }
+
+    //bring news to display on main page
+    function displayArticleNews(){
+      // for loop when more than one company matches search, it will bring all possible companies
+      let ul = document.createElement('ul');
+      let li = document.createElement('li');
+      let a = document.createElement('a');
+      a.setAttribute('data-ticker', searchResult[searchRes]["symbol"]);
+      a.textContent = searchResult[searchRes]["name"];
+      li.appendChild(a);
+      ul.appendChild(li);
+      infoList.appendChild(ul);
+    }
+
   //create call for gainers and losers to be displayed on main page
 
   //rotating phrase
