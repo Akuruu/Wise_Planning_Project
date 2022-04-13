@@ -52,6 +52,16 @@ a:hover {
   line-height: 0;
 }
 
+.is-fullheight-100vh{
+  height: 100vh;
+}
+
+footer {
+  background-color: var(--main-nav-bg-color);
+  color: var(--main-logo-green);
+}
+
+
 .custom-shape-divider-top-1649862465 svg {
   position: relative;
   display: block;

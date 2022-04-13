@@ -1,66 +1,60 @@
 const submitBtn = document.querySelector('#submitBtn');
 const input = document.querySelector('.input');
 const infoList = document.querySelector('#info-list');
+const hideStock = document.querySelector('hide-stock');
 const infoTickerUrl = 'https://api.polygon.io/v3/reference/tickers?active=true&sort=ticker&order=asc&limit=10&apiKey=M_EhIQKuJcODpxzxwlrUpvo8tpGkSqet';
 const infoCompName = 'https://financialmodelingprep.com/api/v3/search-name?query=meta&limit=10&exchange=NASDAQ&apikey=${apiKey}';
 const infoFinNews = 'https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=5&apikey=${apiKey}';
 const infoCompRating = 'https://financialmodelingprep.com/api/v3/rating/${ticker}?apikey=${apiKey}'
-let searchResults = [];
 submitBtn.addEventListener('click', retrieve);
 
-//
 function retrieve(e){
+  infoList.innerHTML = "";
   // searchResults = [
   //   {symbol: 'AAPL', name: 'Apple Inc.', currency: 'USD', stockExchange: 'NASDAQ Global Select', exchangeShortName: 'NASDAQ'},
   //   {symbol: 'MLP', name: 'Maui Land & Pineapple Company, Inc.', currency: 'USD', stockExchange: 'New York Stock Exchange', exchangeShortName: 'NYSE'},
   //   {symbol: 'APLE', name: 'Apple Hospitality REIT, Inc.', currency: 'USD', stockExchange: 'New York Stock Exchange', exchangeShortName: 'NYSE'}];
-  e.preventDefault();
+  // e.preventDefault();
 	if (input.value == ''){
 		alert('Input field is empty')
 		return
 	}
 
-	// infoList.innerHTML = ''
-
-	const apiKey = '0d784df591c50ec5f238976a008df8c3'
+	// const apiKey = '0d784df591c50ec5f238976a008df8c3'
+  // apiKey2 = '7mQ2Tt2MghpA3cI9pyKMcJf4kalR3euf'
 	let searchTerm = input.value;
 //US has these 3 exchanges, so we would need to call the 3 markets to show all the companies in those exchanges 
-  let queryNasqad = `https://financialmodelingprep.com/api/v3/search-name?query=${searchTerm}&limit=10&exchange=NASDAQ&apikey=${apiKey}`;
-  let queryNyse = `https://financialmodelingprep.com/api/v3/search-name?query=${searchTerm}&limit=10&exchange=NYSE&apikey=${apiKey}`;
-  let queryAmex = `https://financialmodelingprep.com/api/v3/search-name?query=${searchTerm}&limit=10&exchange=AMEX&apikey=${apiKey}`;
-//Array with the 3 exchanges so then we were able to iterate in those 3 results
-  let exchangesArr = [queryNasqad, queryNyse, queryAmex ];
-if (searchResults.length == 0) { 
-  for (exchange in exchangesArr){
+  let queryNasqad = `https://financialmodelingprep.com/api/v3/search-name?query=${searchTerm}&limit=10&exchange=NASDAQ&apikey=0d784df591c50ec5f238976a008df8c3`;
+  // let queryNyse = `https://financialmodelingprep.com/api/v3/search-name?query=${searchTerm}&limit=10&exchange=NYSE&apikey=7mQ2Tt2MghpA3cI9pyKMcJf4kalR3euf`;
+  // let queryAmex = `https://financialmodelingprep.com/api/v3/search-name?query=${searchTerm}&limit=10&exchange=AMEX&apikey=${apiKey}`;
+  let exchangesArr = [queryNasqad]; //queryNyse];
+
+  for (exchange in exchangesArr) {
     fetch(exchangesArr[exchange]).then((res)=>{
       return res.json()
     }).then((data)=>{
-      agregateSearchRes(data);
+      console.log(data);
+      displaySearchRes(data);
     }).catch((error)=>{
       console.log(error);
     })
   }
+  
 }
-  displaySearchRes(searchResults);
-}
-//this function merges all 3 results into 1 array that is on line 32
-function agregateSearchRes(data){
-  for (result in data){
-    searchResults.push(data[result]);
-  }
-}
+
 //this shows/creates html elements
-function displaySearchRes(data){
-  data.forEach(searchResult =>{
-    let ul = document.createElement('ul');
-    let li = document.createElement('li');
-    let a = document.createElement('a');
-    a.setAttribute('data-ticker', searchResult.symbol);
-    a.textContent = searchResult.name;
-    li.appendChild(a);
-    ul.appendChild(li);
-    infoList.appendChild(ul);
-  })
+function displaySearchRes(searchResult){
+  // for loop when more than one company matches search, it will bring all possible companies
+  for (searchRes in searchResult){
+  let ul = document.createElement('ul');
+  let li = document.createElement('li');
+  let a = document.createElement('a');
+  a.setAttribute('data-ticker', searchResult[searchRes]["symbol"]);
+  a.textContent = searchResult[searchRes]["name"];
+  li.appendChild(a);
+  ul.appendChild(li);
+  infoList.appendChild(ul);
+  }
 }
 //listener that listens to any click given to any a element in the infoList
 infoList.addEventListener("click", function(event) {
