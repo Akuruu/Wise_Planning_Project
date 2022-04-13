@@ -12,6 +12,14 @@ img {
   height: 600px;
 }
 
+footer a{
+  color: var(--main-logo-green);
+}
+/* this one is specifically for the footer because for some reason it won't work without it? */
+a:hover {
+  color:var(--main-font-hover);
+}
+
   /* moving letters*/  
     h1,h2 {
       font-weight: 200;
@@ -25,7 +33,7 @@ img {
 .navbar {
     background-color: var(--main-nav-bg-color);
 }
-.navbar-item {
+.navbar-item{
     color: var(--main-logo-green);
 }
 
@@ -54,7 +62,6 @@ footer {
     font-size: 2em;
   }
 
-
 .font {
   font-family: Raleway;
   font-size: 3.5em;
@@ -69,6 +76,16 @@ footer {
   overflow: hidden;
   line-height: 0;
 }
+
+.is-fullheight-100vh{
+  height: 100vh;
+}
+
+footer {
+  background-color: var(--main-nav-bg-color);
+  color: var(--main-logo-green);
+}
+
 
 .custom-shape-divider-top-1649862465 svg {
   position: relative;
@@ -85,4 +102,8 @@ footer {
   font-size: 50px;
   align-items: center;
   margin-left: 190px;
+}
+/* for the nav links*/
+#hover:hover {
+ color:var(--main-font-hover);
 }
