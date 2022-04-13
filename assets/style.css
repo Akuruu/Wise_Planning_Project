@@ -16,6 +16,16 @@
 .nav-link:hover {
     color: var(--main-font-hover)
 }
+
+.is-fullheight-100vh{
+  height: 100vh;
+}
+
+footer {
+  background-color: var(--main-nav-bg-color);
+  color: var(--main-logo-green);
+}
+
 /* moving letters*/  
   h1,h2 {
     font-weight: 200;
