@@ -1,11 +1,22 @@
-const submitBtn = document.querySelector('#submitBtn');
-const input = document.querySelector('.input');
-const infoList = document.querySelector('#info-list');
-const hideStock = document.querySelector('hide-stock');
+let submitBtn = document.querySelector('#submitBtn');
+let input = document.querySelector('.input');
+let infoList = document.querySelector('#info-list');
+let hideStock = document.querySelector('hide-stock');
+let articleCard = document.querySelector('#article');
 const infoTickerUrl = 'https://api.polygon.io/v3/reference/tickers?active=true&sort=ticker&order=asc&limit=10&apiKey=M_EhIQKuJcODpxzxwlrUpvo8tpGkSqet';
 const infoCompName = 'https://financialmodelingprep.com/api/v3/search-name?query=meta&limit=10&exchange=NASDAQ&apikey=${apiKey}';
 const infoFinNews = 'https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=5&apikey=${apiKey}';
 const infoCompRating = 'https://financialmodelingprep.com/api/v3/rating/${ticker}?apikey=${apiKey}'
+let newsArticle = {
+  author: "",
+  content: "",
+  date: "",
+  link: "",
+  site: "",
+  tickers: "",
+  title: "",
+};
+
 submitBtn.addEventListener('click', retrieve);
 
 function retrieve(e){
@@ -83,9 +94,8 @@ function polyData(ticker) {
   //display Polygon Data: closing price, highest, lowest
 
   //create call for news from FMP
-  function stockArticles(data) {
+  function stockArticles() {
     var queryArticle = `https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=5&apikey=0d784df591c50ec5f238976a008df8c3`;
-
       fetch(queryArticle)
         .then(function(res) {
             console.log(res);
@@ -95,19 +105,39 @@ function polyData(ticker) {
             console.log(data);
         });
       }
+      stockArticles();
+      handleArticleData();
 
-    //bring news to display on main page
-    function displayArticleNews(){
-      // for loop when more than one company matches search, it will bring all possible companies
-      let ul = document.createElement('ul');
-      let li = document.createElement('li');
-      let a = document.createElement('a');
-      a.setAttribute('data-ticker', searchResult[searchRes]["symbol"]);
-      a.textContent = searchResult[searchRes]["name"];
-      li.appendChild(a);
-      ul.appendChild(li);
-      infoList.appendChild(ul);
-    }
+//show news in the main page
+function handleArticleData(data){
+  data = newsArticle[""];
+  console.log(data);
+  newsArticle = data;
+  var articleDiv = document.createElement('div');
+  articleCard.append(articleDiv);
+  articleDiv.innerHTML = "<p>" +  newsArticle["title"] +  "</p>" +
+  "<p>" + newsArticle["content"] + "</p>";
+  // +
+  // "<li> Wind: " + searchCity["current"]["wind_speed"] + " MPH</li>" +
+  // "<li> Humidity: " + searchCity["current"]["humidity"] + " %</li>" +
+  // "<li id='uvi'> UV Index: " + searchCity["current"]["uvi"] + "</li>";
+  // uvColor(searchCity["current"]["uvi"]);
+  // var titleForecast = document.createElement('h3')
+  // titleFiveDay.append(titleForecast);
+  // titleForecast.innerHTML = "<h3>5-Day Forecast: " + "</h3>";
+
+  // var daily = data["daily"].slice(0, 5);
+  // var daySum = 1;
+  // for (day in daily){
+  //   var forecastDiv = document.createElement('div')
+  //   forecastBox.append(forecastDiv).addClass("fbox");
+  //   forecastDiv.innerHTML = "<h4>" + dayjs().add(daySum, 'day').format("MM/DD/YYYY") + "</h4>" + " <img src='https://openweathermap.org/img/wn/" + daily[day]["weather"][0]["icon"] + ".png' /></div>" +
+  //   "<div> Temp: " + daily[day]["temp"]["day"] + " F</div>" +
+  //   "<div> Wind: " + daily[day]["wind_speed"] + " MPH</div>" +
+  //   "<div> Humidity: " + daily[day]["humidity"] + " %</div>" ;
+  //   daySum++;
+  // }
+}
 
   //create call for gainers and losers to be displayed on main page
 
