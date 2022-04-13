@@ -68,16 +68,57 @@ infoList.addEventListener("click", function(event) {
 //function that calls polygon by ticker
 
 function polyData(ticker) {
-  var queryTicker = `https://api.polygon.io/v2/aggs/ticker/${ticker}/prev?adjusted=true&apiKey=jVeWqQOEafgJX73FKFxxBZJ0M5RtPnp6`;
+  var queryTicker = `https://api.polygon.io/v2/aggs/ticker/${ticker}/prev?adjusted=true&apiKey=4384b9dd05a38aabc997c0dbb99252cc`;
     fetch(queryTicker)
       .then(function(res) {
           console.log(res);
           return res.json()
       })
+      // adding API's Dom values to html for display
       .then(function(data){
-          console.log(data);
-      });
-    }
+          
+          let companyTicker = data.results[0].T
+          let lastClose = data.results[0].c
+          let stockHigh = data.results[0].h
+          let stockLow = data.results[0].l
+          T.setAttribute('data-ticker', searchResult[searchRes]["companyTicker"]);
+          t.textContent = searchResult[searchRes]["T"];
+          c.setAttribute('data-ticker', searchResult[searchRes]["lastClose"]);
+          c.textContent = searchResult[searchRes]["c"];
+          h.setAttribute('data-ticker', searchResult[searchRes]["stockHigh"]);
+          h.textContent = searchResult[searchRes]["h"];
+          l.setAttribute('data-ticker', searchResult[searchRes]["stockLow"]);
+          l.textContent = searchResult[searchRes]["T"];
+          function createListItem (text) {
+            let li = document.createElement("li");
+            li.textContent = text;
+            return li;
+          }
+
+          function appendChildren (parent, children) {
+            children.forEach(function (child) {
+              parent.appendChild(child);
+            });
+              }
+
+              let infoList =document.getElementById("info-list");
+
+              let items = [
+                createListItem("T"),
+                createListItem("c"),
+                createListItem("h"),
+                createListItem("l")
+              ];
+
+             appendChildren(infoList, items);
+          })
+            
+          }
+
+      
+    
+
+    
 
   //to do:
   //display Polygon Data: closing price, highest, lowest
