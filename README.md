@@ -4,7 +4,7 @@
 
 <ul>
 <li>Description</li>
-<li> Website </li>
+<li> Website Showcase</li>
 <li> Languages </li>
 <li> Contributors</li>
 </ul>
