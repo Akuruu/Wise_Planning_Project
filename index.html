@@ -15,88 +15,91 @@
 </head>
 <body>
     <!--NavBar-->
-    <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="/index.html">
-            <img src="./assets/image/logo_bigger10x10.png" alt="site logo" style="max-height: 70px">
-          </a>
-          <a role="button" class="navbar-burger is-large" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-        <div class="navbar-menu">
-          <div class="navbar-end nav-link">
-            <a id="hover" class="navbar-item" href="#">
-                Home
-            </a>
-
-            <a id="hover" class="navbar-item" href="./About-us.html">
-                About us
-            </a>
-            <a id="hover" class="navbar-item" href="./The-team.html">
-                Our Team
-            </a>
-            </div>
-        </div>
-    </nav>
-    <!-- Hero content: will be in the middle, search button and time-->
-    <header>
-      <section class="container" style="justify-content: center;">
-        <h1>Get
-        <span
-           class="txt-rotate"
-           data-period="3000"
-           data-rotate='[ "facts.", "latest news."]'></span>
-        </h1>
-        <h2>Data driven decisions.</h2>
-      </section>
-      <div class="container is-centered">
-        <div class="field is-grouped has-addons">
-          <div class="control has-icons-left is-expanded">
-            <p>
-              <input class="input is-success" type="text" placeholder="Find by company name or ticker">
-              <span class="icon is-small is-left">
-                <i class="fas fa-search"></i>
-              </span>
-            </p>
-          </div>
-            <p class="sucess">
-              <button id="submitBtn" class="button is-success">
-                Search
-              </button>
-            </p>
-          </div>
-        </div>
-        </div>
+  <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/index.html">
+          <img src="./assets/image/logo_bigger10x10.png" alt="site logo" style="max-height: 70px">
+        </a>
+        <a role="button" class="navbar-burger is-large" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
       </div>
-    </header>
-    <br>
-    <section>
-      <div class="container is-fullheight-100vh">
-        <div class="columns" id="hide-stock">
-          <div class="column is-half" style="border: solid rgb(179, 172, 172)">
-            <h1>Stock Information</h1>    
-            <!--1st column--> 
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde rem blanditiis quidem totam voluptatibus 
-              voluptas cum laudantium qui rerum autem, atque corporis ea error, odio possimus. Totam in animi facere.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto aliquam, 
-                quos earum et, vel illum sint velit ab impedit eligendi quibusdam,
-                ipsum veritatis odio aperiam ut excepturi ullam inventore deserunt.</p>
-                <div id="info-list">
-                </div>
-              </div>
-            <!--2nd column-->
-            <div class="column is-half" style="border: solid rgb(179, 172, 172)">
-              <h1>News</h1> 
-              <!--Replace text with boxes--> 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto aliquam, 
-              quos earum et, vel illum sint velit ab impedit eligendi quibusdam,
-              ipsum veritatis odio aperiam ut excepturi ullam inventore deserunt.</p></div>
-        </div>
+      <div class="navbar-menu">
+        <div class="navbar-end nav-link">
+          <a id="hover" class="navbar-item" href="#">
+              Home
+          </a>
+
+          <a id="hover" class="navbar-item" href="./About-us.html">
+              About us
+          </a>
+          <a id="hover" class="navbar-item" href="./The-team.html">
+              Our Team
+          </a>
+          </div>
+      </div>
+  </nav>
+  <!-- Hero content: will be in the middle, search button and time-->
+  <header>
+    <section class="container" style="justify-content: center;">
+      <h1> Wise
+      <span
+          class="txt-rotate"
+          data-period="3000"
+          data-rotate='[ "Planning.", "Choices.", "Finances"]'></span>
+      </h1>
+      <h2>Data driven decisions.</h2>
     </section>
+    <div class="container is-centered">
+      <div class="field is-grouped has-addons">
+        <div class="control has-icons-left is-expanded">
+          <p>
+            <input class="input is-success" type="text" placeholder="Find by company name or ticker">
+            <span class="icon is-small is-left">
+              <i class="fas fa-search"></i>
+            </span>
+          </p>
+        </div>
+          <p class="sucess">
+            <button id="submitBtn" class="button is-success">
+              Search
+            </button>
+          </p>
+      </div>
+    </div>
+  </header>
+  <br>
+  <!--Home page show news & Stock information-->
+  <section>
+    <div class="container is-fullheight-100vh">
+      <div class="columns">
+        <div class="column is-two-fifths">
+          <!--rendering first search results & showing companies available-->
+          <div id="info-list"></div>
+          <!--1st column--> 
+          <div id="title-loser">
+            <div id="gainer">
+            </div>
+            <div id="loser">
+            </div>
+          </div>
+        </div>
+          <!--2nd column-->
+          <div class="column is-three-fifths">
+            <div class="column">
+            <div id="title-article">
+              <div id="article">
+              </div>
+            </div>
+          </div>
+          </div> 
+      </div>
+    </div>
+  </section>
     <!--End of columns-->
+
     <footer class="footer" style="background-color: hsl(0, 0%, 96%);">
       <div class="content has-text-centered">
         <p>
