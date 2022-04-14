@@ -20,8 +20,10 @@ a:hover {
   color: var(--main-font-hover);
 }
 
-br {
-  margin: 5em;
+
+br{
+  margin: 10em;
+
 }
 
 /* moving letters*/
@@ -131,6 +133,10 @@ footer {
 }
 
 /* DRY refactor*/
+#info-list {
+  color: var(--main-logo-green);
+}
+
 #title-article {
   background-color: var(--main-font-hover);
   color: rgb(242, 236, 236);
