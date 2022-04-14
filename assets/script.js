@@ -115,7 +115,7 @@ stockArticles();
 
 
 //show news in the main page
-function handleArticleData(data) {
+function handleArticleData(data) {gi
   console.log(data);
   var titleArt = document.createElement('h1');
   titleArt.innerHTML = "Latest News";
