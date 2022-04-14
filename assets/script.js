@@ -90,7 +90,6 @@ function handleTickerData(data) {
 }
 
 // create call for news from FMP
-
 function stockArticles() {
   var queryArticle = `https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=5&apikey=6b5b1e9afa1a31cc4e5f0033e2ee6e9b`;
   fetch(queryArticle)
@@ -146,6 +145,7 @@ function displayGainers(data) {
     gainerDiv.innerHTML = "<h3>" + data[d]["name"] + "</h3>" + "<ul>" + "<li>" + data[d]["symbol"] + "</li>" + "<li>" + data[d]["change"] + "</li>" + "<li>" + "$" + data[d]["price"] + "</li>" + "<li>" + data[d]["changesPercentage"] + "%" +"</li>" + "</ul>";
   }
 }
+
 //rotating phrase
 var TxtRotate = function (el, toRotate, period) {
   this.toRotate = toRotate;
@@ -204,3 +204,5 @@ window.onload = function () {
   document.body.appendChild(css);
 };
 
+    }
+  

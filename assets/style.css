@@ -12,40 +12,45 @@ img {
   height: 600px;
 }
 
-footer a{
+footer a {
   color: var(--main-logo-green);
 }
 /* this one is specifically for the footer because for some reason it won't work without it? */
 a:hover {
-  color:var(--main-font-hover);
+  color: var(--main-font-hover);
 }
+
 
 br{
   margin: 10em;
+
 }
 
-  /* moving letters*/  
-    h1,h2 {
-      font-weight: 200;
-      margin: 0.4em 0;
+/* moving letters*/
+h1,
+h2 {
+  font-weight: 200;
+  margin: 0.4em 0;
 }
-    h1 { font-size: 3.5em; }
-    h2 {
-      color: #888;
-      font-size: 2em;
+h1 {
+  font-size: 3.5em;
+}
+h2 {
+  color: #888;
+  font-size: 2em;
 }
 .navbar {
-    background-color: var(--main-nav-bg-color);
+  background-color: var(--main-nav-bg-color);
 }
-.navbar-item{
-    color: var(--main-logo-green);
+.navbar-item {
+  color: var(--main-logo-green);
 }
 
 .nav-link:hover {
-    color: var(--main-font-hover)
+  color: var(--main-font-hover);
 }
 
-.is-fullheight-100vh{
+.is-fullheight-100vh {
   min-height: 100vh;
 }
 
@@ -54,21 +59,24 @@ footer {
   color: var(--main-logo-green);
 }
 
-/* moving letters*/  
-  h1,h2 {
-    font-weight: 200;
-    margin: 0.4em 0;
-  }
-  h1 { font-size: 3.5em; }
-  h2 {
-    color: #888;
-    font-size: 2em;
-  }
-  h3 {
-    font-weight: bold;
-    color: var(--main-logo-green);
-    background-color: var(--main-font-hover);
-  }
+/* moving letters*/
+h1,
+h2 {
+  font-weight: 200;
+  margin: 0.4em 0;
+}
+h1 {
+  font-size: 3.5em;
+}
+h2 {
+  color: #888;
+  font-size: 2em;
+}
+h3 {
+  font-weight: bold;
+  color: var(--main-logo-green);
+  background-color: var(--main-font-hover);
+}
 
 .font {
   font-family: Raleway;
@@ -85,7 +93,7 @@ footer {
   line-height: 0;
 }
 
-.is-fullheight-100vh{
+.is-fullheight-100vh {
   height: 100vh;
 }
 
@@ -94,6 +102,10 @@ footer {
   color: var(--main-logo-green);
 }
 
+.showcase-footer {
+  display: flex;
+  justify-content: center;
+}
 
 .custom-shape-divider-top-1649862465 svg {
   position: relative;
@@ -113,7 +125,7 @@ footer {
 }
 /* for the nav links*/
 #hover:hover {
- color:var(--main-font-hover);
+  color: var(--main-font-hover);
 }
 /*custom css for javascript main html items*/
 .company-list {
@@ -138,7 +150,8 @@ footer {
 #article {
   background-color: #fff;
   border-radius: 0.25rem;
-  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
+  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
+    0 0 0 1px rgb(10 10 10 / 2%);
   color: #4a4a4a;
   max-width: 100%;
   position: relative;
@@ -147,7 +160,8 @@ footer {
 #loser {
   background-color: #fff;
   border-radius: 0.25rem;
-  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
+  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
+    0 0 0 1px rgb(10 10 10 / 2%);
   color: #4a4a4a;
   max-width: 100%;
   position: relative;
