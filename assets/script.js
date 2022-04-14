@@ -3,21 +3,17 @@ let input = document.querySelector('.input');
 let infoList = document.querySelector('#info-list');
 let articleCard = document.querySelector('#article');
 let gainerCard = document.querySelector('#gainer');
-let loserCard = document.querySelector('#loser');
 let titleArticle = document.querySelector('#title-article');
-let titleArtLosers = document.querySelector('#title-loser')
-// const infoTickerUrl = 'https://api.polygon.io/v3/reference/tickers?active=true&sort=ticker&order=asc&limit=10&apiKey=M_EhIQKuJcODpxzxwlrUpvo8tpGkSqet';
-// const infoCompName = 'https://financialmodelingprep.com/api/v3/search-name?query=meta&limit=10&exchange=NASDAQ&apikey=${apiKey}';
-// const infoFinNews = 'https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=5&apikey=${apiKey}';
-// const infoCompRating = 'https://financialmodelingprep.com/api/v3/rating/${ticker}?apikey=${apiKey}'
+let titleArtGainers = document.querySelector('#title-gainer')
+
 
 submitBtn.addEventListener('click', retrieve);
 
 function retrieve(e) {
   infoList.innerHTML = "";
   articleCard.innerHTML = "";
-  loserCard.innerHTML = "";
-  titleArtLosers.innerHTML = "";
+  gainerCard.innerHTML = "";
+  titleArtGainers.innerHTML = "";
   titleArticle.innerHTML = "";
 
   if (input.value == '') {
@@ -25,7 +21,7 @@ function retrieve(e) {
     return
   }
 
-  // const apiKey = '0d784df591c50ec5f238976a008df8c3'
+  // const apiKey - Evelyn FMP = '0d784df591c50ec5f238976a008df8c3'
   let searchTerm = input.value;
   //US has these 3 exchanges, so we would need to call the 3 markets to show all the companies in those exchanges 
   let queryNasqad = `https://financialmodelingprep.com/api/v3/search-name?query=${searchTerm}&limit=10&exchange=NASDAQ&apikey=0d784df591c50ec5f238976a008df8c3`;
@@ -70,35 +66,31 @@ infoList.addEventListener("click", function (event) {
 });
 
 //function that calls polygon by ticker
+//Edwin's key to Polygon M_EhIQKuJcODpxzxwlrUpvo8tpGkSqet
 
 function polyData(ticker) {
-  var queryTicker = `https://api.polygon.io/v2/aggs/ticker/${ticker}/prev?adjusted=true&apiKey=jVeWqQOEafgJX73FKFxxBZJ0M5RtPnp6`;
+  var queryTicker = `https://api.polygon.io/v2/aggs/ticker/${ticker}/prev?adjusted=true&apiKey=M_EhIQKuJcODpxzxwlrUpvo8tpGkSqet`;
   fetch(queryTicker)
     .then(function (res) {
       return res.json()
     })
-    // adding API's Dom values to html for display - display Polygon Data: closing price, highest, lowest
     .then(function (data) {
-      let lastClose = data.results[0].c
-      let stockHigh = data.results[0].h
-      let stockLow = data.results[0].l
-      //create li do a for (a in b)
-      let nameTicker = document.createElement("li").textContent = data.results[0].T;
-      nameTicker.setAttribute('data-ticker', searchResult[searchRes]["companyTicker"]);
-      t.textContent = searchResult[searchRes]["T"];
-      c.setAttribute('data-ticker', searchResult[searchRes]["lastClose"]);
-      c.textContent = searchResult[searchRes]["c"];
-      h.setAttribute('data-ticker', searchResult[searchRes]["stockHigh"]);
-      h.textContent = searchResult[searchRes]["h"];
-      l.setAttribute('data-ticker', searchResult[searchRes]["stockLow"]);
-      l.textContent = searchResult[searchRes]["T"];
-      //create append here
-
+      console.log(data);
+      handleTickerData(data);
     })
 }
 
+function handleTickerData(data) {
+  console.log(data);
+  for (d in data["results"]) {
+    var infoListDiv = document.createElement('div');
+    infoList.append(infoListDiv);
+    infoListDiv.innerHTML = "<h3>" + data["results"][0]["T"] + "</h3>" + "<li>" + data["results"][0]["c"] + "</li>"+ "<p>" + data["results"][0]["h"] + "</p>";
+  }
+}
 
-//create call for news from FMP
+// create call for news from FMP
+
 function stockArticles() {
   var queryArticle = `https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=5&apikey=6b5b1e9afa1a31cc4e5f0033e2ee6e9b`;
   fetch(queryArticle)
@@ -114,10 +106,10 @@ function stockArticles() {
 stockArticles();
 
 
-//show news in the main page
+//show news in the main page 
 function handleArticleData(data) {
   console.log(data);
-  var titleArt = document.createElement('h1');
+  var titleArt = document.createElement('h2');
   titleArt.innerHTML = "Latest News";
   titleArticle.prepend(titleArt);
   for (d in data["content"]) {
@@ -127,31 +119,31 @@ function handleArticleData(data) {
   }
 }
 
-//create call for gainers and losers to be displayed on main page
-function getLosers() {
-  var queryLosers = 'https://financialmodelingprep.com/api/v3/stock_market/losers?apikey=00bd83fe665028f00039a626fdabd48e';
-  fetch(queryLosers)
+//create call for gainers to be displayed on main page 
+function getGainers() {
+  var queryGainers = 'https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=00bd83fe665028f00039a626fdabd48e';
+  fetch(queryGainers)
     .then(function (res) {
       console.log(res);
       return res.json()
     })
     .then(function (data) {
       console.log(data);
-      displayLosers(data);
+      displayGainers(data);
     });
 }
-getLosers();
+getGainers();
 
-function displayLosers(data) {
+function displayGainers(data) {
   console.log(data);
-  var titleLoser = document.createElement('h1');
-  titleLoser.innerHTML = "Losers";
-  titleArtLosers.prepend(titleLoser);
+  var titleGainer = document.createElement('h2');
+  titleGainer.innerHTML = "Most Gainer Stock Companies";
+  titleArtGainers.prepend(titleGainer);
   for (d in data.slice(0, 5)) {
     console.log(data[d]);
-    var loserDiv = document.createElement('div');
-    loserCard.append(loserDiv);
-    loserDiv.innerHTML = "<h3>" + data[d]["name"] + "</h3>" + "<ul>" + "<li>" + data[d]["symbol"] + "</li>" + "<li>" + data[d]["change"] + "</li>" + "<li>" + data[d]["price"] + "</li>" + "<li class=''>" + data[d]["changesPercentage"] + "</li>" + "</ul>";
+    var gainerDiv = document.createElement('div');
+    gainerCard.append(gainerDiv);
+    gainerDiv.innerHTML = "<h3>" + data[d]["name"] + "</h3>" + "<ul>" + "<li>" + data[d]["symbol"] + "</li>" + "<li>" + data[d]["change"] + "</li>" + "<li>" + "$" + data[d]["price"] + "</li>" + "<li>" + data[d]["changesPercentage"] + "%" +"</li>" + "</ul>";
   }
 }
 //rotating phrase

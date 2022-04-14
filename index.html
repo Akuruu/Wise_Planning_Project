@@ -1,57 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Link to stylesheet, feel free to add more if necessary-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
-    <link rel="stylesheet" href="./assets/style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Link to stylesheet, feel free to add more if necessary-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/style.css">
 
-    <title>Wise Planning</title>
+  <title>Wise Planning</title>
 </head>
-<body>
-    <!--NavBar-->
-  <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="index.html">
-          <img src="./assets/image/logo_bigger10x10.png" alt="site logo" style="max-height: 70px">
-        </a>
-        <a role="button" class="navbar-burger is-large" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-      <div class="navbar-menu">
-        <div class="navbar-end nav-link">
-          <a id="hover" class="navbar-item" href="#">
-              Home
-          </a>
 
-          <a id="hover" class="navbar-item" href="./About-us.html">
-              About us
-          </a>
-          <a id="hover" class="navbar-item" href="./The-team.html">
-              Our Team
-          </a>
-          </div>
-      </div>
+<body>
+  <!--NavBar-->
+  <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="index.html">
+        <img src="./assets/image/logo_bigger10x10.png" alt="site logo" style="max-height: 70px">
+      </a>
+      <a role="button" class="navbar-burger is-large" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+
+      <a id="hover" class="navbar-item" href="./About-us.html">
+        About us
+      </a>
+      <a id="hover" class="navbar-item" href="./The-team.html">
+        Our Team
+      </a>
+    </div>
+    </div>
   </nav>
-  <!-- Hero content: will be in the middle, search button and time-->
+  <!--Header with shape-->
   <header>
-    <section class="container" style="justify-content: center;">
-      <h1> Wise
-      <span
-          class="txt-rotate"
-          data-period="3000"
-          data-rotate='[ "Planning.", "Choices.", "Finances"]'></span>
-      </h1>
-      <h2>Data driven decisions.</h2>
-    </section>
+    <section class="hero" style="justify-content: center;">
+      <div class="custom-shape-divider-top-1649862465">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M1200 0L0 0 892.25 114.72 1200 0z" class="shape-fill"></path>
+        </svg>
+      </div>
+      <div class="hero-body">
+        <section class="container" style="justify-content: center;">
+          <h1> Wise
+            <span class="txt-rotate" data-period="3000" data-rotate='[ "Planning.", "Choices.", "Finances"]'></span>
+          </h1>
+          <h2 class="subtitle font" style="color:#888; font-size: 2em;">Data driven decisions.</h2>
+        </section>
+      </div>
+    </section id="curve">
+  </header>
+  <!-- Hero content: will be in the middle, search button and time-->
+  <section>
     <div class="container is-centered">
       <div class="field is-grouped has-addons">
         <div class="control has-icons-left is-expanded">
@@ -62,14 +68,14 @@
             </span>
           </p>
         </div>
-          <p class="sucess">
-            <button id="submitBtn" class="button is-success">
-              Search
-            </button>
-          </p>
+        <p class="sucess">
+          <button id="submitBtn" class="button is-success">
+            Search
+          </button>
+        </p>
       </div>
     </div>
-  </header>
+  </section>
   <br>
   <!--Home page show news & Stock information-->
   <section>
@@ -78,62 +84,48 @@
         <div class="column is-two-fifths">
           <!--rendering first search results & showing companies available-->
           <div id="info-list"></div>
-          <!--1st column--> 
-          <div id="title-loser">
-            <div id="gainer">
-            </div>
-            <div id="loser">
+          <!--1st column-->
+          <div>
+            <div id="title-gainer">
+              <div id="gainer">
+              </div>
             </div>
           </div>
         </div>
-          <!--2nd column-->
-          <div class="column is-three-fifths">
-            <div class="column">
+        <!--2nd column-->
+        <div class="column is-three-fifths">
+          <div class="column">
             <div id="title-article">
               <div id="article">
               </div>
             </div>
           </div>
-          </div> 
+        </div>
       </div>
     </div>
   </section>
-    <!--End of columns-->
+  <!--End of columns-->
 
-    <footer class="footer" style="background-color: hsl(0, 0%, 96%);">
-      <div class="content has-text-centered">
-        <p>
-          <strong>The 200's </strong><a href="./The-team.html">Meet the team </a>
-          <a href="http://opensource.org/licenses/mit-license.php"></a> or learn more<a href="./About-us.html"> About us</a>.
-        </p>
-      </div>
-    </footer>
+  <footer class="footer" style="background-color: hsl(0, 0%, 96%);">
+    <div class="content has-text-centered">
+      <p>
+        <strong>The 200's </strong><a href="./The-team.html">Meet the team </a>
+        <a href="http://opensource.org/licenses/mit-license.php"></a> or learn more<a href="./About-us.html"> About
+          us</a>.
+      </p>
+    </div>
+  </footer>
 
-    <!--day.js to format dates-->
-    <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"
-    integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg=="
-    crossorigin="anonymous"
-    ></script>
-    <script 
-    src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/utc.min.js" 
-    integrity="sha512-m00bfmYnAl3plEBlQfeQUhw/U2uvmw29V2+jxSWpAjankMWS+zAsjezbKWDEJNXqWq9o9qQZSOiA2RKDpa4D5w==" 
-    crossorigin="anonymous"
-    ></script>
-    <script 
-    src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/timezone.min.js" 
-    integrity="sha512-pslqxxHAYPCxaSeFSmXXxDkLejD5dbFVC66aiVq0z4v7VTJBU+wqcG1OpNh4p3MjS2D6NCwz/H2QmSc7dXxryg==" 
-    crossorigin="anonymous"
-    ></script>
 
-    <!--JQuery-->
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <!--fontawesome-->
-    <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <!--moving letters-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-    <!--Link to js file, feel free to add more if necessary-->
-    <script src="./assets/script.js"></script>
+  <!--JQuery-->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <!--fontawesome-->
+  <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <!--moving letters-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+  <!--Link to js file, feel free to add more if necessary-->
+  <script src="./assets/script.js"></script>
 </body>
+
 </html>
