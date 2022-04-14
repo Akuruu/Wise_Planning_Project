@@ -3,26 +3,25 @@ let input = document.querySelector('.input');
 let infoList = document.querySelector('#info-list');
 let articleCard = document.querySelector('#article');
 let gainerCard = document.querySelector('#gainer');
-let loserCard = document.querySelector('#loser');
 let titleArticle = document.querySelector('#title-article');
-let titleArtLosers = document.querySelector('#title-loser')
+let titleArtGainers = document.querySelector('#title-gainer')
 
 
 submitBtn.addEventListener('click', retrieve);
 
 function retrieve(e) {
   infoList.innerHTML = "";
-  // articleCard.innerHTML = "";
-  // loserCard.innerHTML = "";
-  // titleArtLosers.innerHTML = "";
-  // titleArticle.innerHTML = "";
+  articleCard.innerHTML = "";
+  gainerCard.innerHTML = "";
+  titleArtGainers.innerHTML = "";
+  titleArticle.innerHTML = "";
 
   if (input.value == '') {
     alert('Input field is empty')
     return
   }
 
-  // const apiKey = '0d784df591c50ec5f238976a008df8c3'
+  // const apiKey - Evelyn FMP = '0d784df591c50ec5f238976a008df8c3'
   let searchTerm = input.value;
   //US has these 3 exchanges, so we would need to call the 3 markets to show all the companies in those exchanges 
   let queryNasqad = `https://financialmodelingprep.com/api/v3/search-name?query=${searchTerm}&limit=10&exchange=NASDAQ&apikey=0d784df591c50ec5f238976a008df8c3`;
@@ -90,62 +89,63 @@ function handleTickerData(data) {
   }
 }
 
-//create call for news from FMP -- this
-// function stockArticles() {
-//   var queryArticle = `https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=5&apikey=6b5b1e9afa1a31cc4e5f0033e2ee6e9b`;
-//   fetch(queryArticle)
-//     .then(function (res) {
-//       console.log(res);
-//       return res.json()
-//     })
-//     .then(function (data) {
-//       console.log(data);
-//       handleArticleData(data);
-//     });
-// }
-// stockArticles();
+// create call for news from FMP
+
+function stockArticles() {
+  var queryArticle = `https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=5&apikey=6b5b1e9afa1a31cc4e5f0033e2ee6e9b`;
+  fetch(queryArticle)
+    .then(function (res) {
+      console.log(res);
+      return res.json()
+    })
+    .then(function (data) {
+      console.log(data);
+      handleArticleData(data);
+    });
+}
+stockArticles();
 
 
-//show news in the main page -- this
-// function handleArticleData(data) {
-//   console.log(data);
-//   var titleArt = document.createElement('h1');
-//   titleArt.innerHTML = "Latest News";
-//   titleArticle.prepend(titleArt);
-//   for (d in data["content"]) {
-//     var articleDiv = document.createElement('div');
-//     articleCard.append(articleDiv);
-//     articleDiv.innerHTML = "<h3>" + data["content"][d]["title"] + "</h3>" + "<a href='" + data["content"][d]["link"] + "'>" + " Read full article" + "</a>" + "<p>" + data["content"][d]["date"] + "</p>";
-//   }
-// }
+//show news in the main page 
+function handleArticleData(data) {
+  console.log(data);
+  var titleArt = document.createElement('h2');
+  titleArt.innerHTML = "Latest News";
+  titleArticle.prepend(titleArt);
+  for (d in data["content"]) {
+    var articleDiv = document.createElement('div');
+    articleCard.append(articleDiv);
+    articleDiv.innerHTML = "<h3>" + data["content"][d]["title"] + "</h3>" + "<a href='" + data["content"][d]["link"] + "'>" + " Read full article" + "</a>" + "<p>" + data["content"][d]["date"] + "</p>";
+  }
+}
 
-//create call for gainers and losers to be displayed on main page -- this
-// function getLosers() {
-//   var queryLosers = 'https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey==00bd83fe665028f00039a626fdabd48e';
-//   fetch(queryLosers)
-//     .then(function (res) {
-//       console.log(res);
-//       return res.json()
-//     })
-//     .then(function (data) {
-//       console.log(data);
-//       displayLosers(data);
-//     });
-// }
-// getLosers();
+//create call for gainers to be displayed on main page 
+function getGainers() {
+  var queryGainers = 'https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=00bd83fe665028f00039a626fdabd48e';
+  fetch(queryGainers)
+    .then(function (res) {
+      console.log(res);
+      return res.json()
+    })
+    .then(function (data) {
+      console.log(data);
+      displayGainers(data);
+    });
+}
+getGainers();
 
-// function displayLosers(data) {
-//   console.log(data);
-//   var titleLoser = document.createElement('h1');
-//   titleLoser.innerHTML = "Losers";
-//   titleArtLosers.prepend(titleLoser);
-//   for (d in data.slice(0, 5)) {
-//     console.log(data[d]);
-//     var loserDiv = document.createElement('div');
-//     loserCard.append(loserDiv);
-//     loserDiv.innerHTML = "<h3>" + data[d]["name"] + "</h3>" + "<ul>" + "<li>" + data[d]["symbol"] + "</li>" + "<li>" + data[d]["change"] + "</li>" + "<li>" + data[d]["price"] + "</li>" + "<li class=''>" + data[d]["changesPercentage"] + "</li>" + "</ul>";
-//   }
-// }
+function displayGainers(data) {
+  console.log(data);
+  var titleGainer = document.createElement('h2');
+  titleGainer.innerHTML = "Most Gainer Stock Companies";
+  titleArtGainers.prepend(titleGainer);
+  for (d in data.slice(0, 5)) {
+    console.log(data[d]);
+    var gainerDiv = document.createElement('div');
+    gainerCard.append(gainerDiv);
+    gainerDiv.innerHTML = "<h3>" + data[d]["name"] + "</h3>" + "<ul>" + "<li>" + data[d]["symbol"] + "</li>" + "<li>" + data[d]["change"] + "</li>" + "<li>" + "$" + data[d]["price"] + "</li>" + "<li>" + data[d]["changesPercentage"] + "%" +"</li>" + "</ul>";
+  }
+}
 //rotating phrase
 var TxtRotate = function (el, toRotate, period) {
   this.toRotate = toRotate;
