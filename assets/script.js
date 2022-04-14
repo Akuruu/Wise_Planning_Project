@@ -3,16 +3,16 @@ let input = document.querySelector('.input');
 let infoList = document.querySelector('#info-list');
 let hideStock = document.querySelector('hide-stock');
 let articleCard = document.querySelector('#article');
+let gainerCard = document.querySelector('#gainer');
+let loserCard = document.querySelector('#loser');
 const infoTickerUrl = 'https://api.polygon.io/v3/reference/tickers?active=true&sort=ticker&order=asc&limit=10&apiKey=M_EhIQKuJcODpxzxwlrUpvo8tpGkSqet';
 const infoCompName = 'https://financialmodelingprep.com/api/v3/search-name?query=meta&limit=10&exchange=NASDAQ&apikey=${apiKey}';
 const infoFinNews = 'https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=5&apikey=${apiKey}';
 const infoCompRating = 'https://financialmodelingprep.com/api/v3/rating/${ticker}?apikey=${apiKey}'
 let newsArticle = {
-  author: "",
   content: "",
   date: "",
   link: "",
-  site: "",
   tickers: "",
   title: "",
 };
@@ -103,44 +103,46 @@ function polyData(ticker) {
         })
         .then(function(data){
             console.log(data);
+            handleArticleData(data);
         });
       }
       stockArticles();
-      handleArticleData();
+
 
 //show news in the main page
 function handleArticleData(data){
-  data = newsArticle[""];
   console.log(data);
-  newsArticle = data;
-  var articleDiv = document.createElement('div');
-  articleCard.append(articleDiv);
-  articleDiv.innerHTML = "<p>" +  newsArticle["title"] +  "</p>" +
-  "<p>" + newsArticle["content"] + "</p>";
-  // +
-  // "<li> Wind: " + searchCity["current"]["wind_speed"] + " MPH</li>" +
-  // "<li> Humidity: " + searchCity["current"]["humidity"] + " %</li>" +
-  // "<li id='uvi'> UV Index: " + searchCity["current"]["uvi"] + "</li>";
-  // uvColor(searchCity["current"]["uvi"]);
-  // var titleForecast = document.createElement('h3')
-  // titleFiveDay.append(titleForecast);
-  // titleForecast.innerHTML = "<h3>5-Day Forecast: " + "</h3>";
-
-  // var daily = data["daily"].slice(0, 5);
-  // var daySum = 1;
-  // for (day in daily){
-  //   var forecastDiv = document.createElement('div')
-  //   forecastBox.append(forecastDiv).addClass("fbox");
-  //   forecastDiv.innerHTML = "<h4>" + dayjs().add(daySum, 'day').format("MM/DD/YYYY") + "</h4>" + " <img src='https://openweathermap.org/img/wn/" + daily[day]["weather"][0]["icon"] + ".png' /></div>" +
-  //   "<div> Temp: " + daily[day]["temp"]["day"] + " F</div>" +
-  //   "<div> Wind: " + daily[day]["wind_speed"] + " MPH</div>" +
-  //   "<div> Humidity: " + daily[day]["humidity"] + " %</div>" ;
-  //   daySum++;
-  // }
+  for(d in data["content"]){
+    var articleDiv = document.createElement('div');
+    articleCard.append(articleDiv);
+    articleDiv.innerHTML = "<h3>" +  data["content"][d]["title"] +  "</h3>" + "<a href='"+ data["content"][d]["link"] +"'>" + " Read full article"+ "</a>" + "<p>" + data["content"][d]["date"] + "</p>";
+  }
 }
 
   //create call for gainers and losers to be displayed on main page
+function getLosers(){
+  var queryLosers = 'https://financialmodelingprep.com/api/v3/stock_market/losers?apikey=0d784df591c50ec5f238976a008df8c3';
+  fetch(queryLosers)
+        .then(function(res) {
+            console.log(res);
+            return res.json()
+        })
+        .then(function(data){
+            console.log(data);
+            displayLosers(data);
+        });
+}
+getLosers();
 
+function displayLosers(data){
+  console.log(data);
+  for(d in data.slice(0, 5)){
+    console.log(data[d]);
+    var loserDiv = document.createElement('div');
+    loserCard.append(loserDiv);
+    loserDiv.innerHTML = "<h4>" +  data[d]["name"] +  "</h4>" + "<ul>"+ "<li>" + data[d]["symbol"]+ "</li>" + "<li>" + data[d]["change"] + "</li>" + "<li>" + data[d]["price"]+ "</li>" + "<li>" + data[d]["changesPercentage"]+ "</li>" + "</ul>";
+  }
+}
   //rotating phrase
   var TxtRotate = function(el, toRotate, period) {
     this.toRotate = toRotate;
