@@ -81,11 +81,12 @@ function polyData(ticker) {
 }
 
 function handleTickerData(data) {
+  infoList.innerHTML = "";
   console.log(data);
   for (d in data["results"]) {
     var infoListDiv = document.createElement('div');
     infoList.append(infoListDiv);
-    infoListDiv.innerHTML = "<h3>" + data["results"][0]["T"] + "</h3>" + "<li>" + data["results"][0]["c"] + "</li>"+ "<p>" + data["results"][0]["h"] + "</p>";
+    infoListDiv.innerHTML = "<h3>" + data["results"][0]["T"] + "</h3>" + "<li>" + data["results"][0]["c"] + "</li>" + "<p>" + data["results"][0]["h"] + "</p>";
   }
 }
 
@@ -141,7 +142,7 @@ function displayGainers(data) {
     console.log(data[d]);
     var gainerDiv = document.createElement('div');
     gainerCard.append(gainerDiv);
-    gainerDiv.innerHTML = "<h3>" + data[d]["name"] + "</h3>" + "<ul>" + "<li>" + data[d]["symbol"] + "</li>" + "<li>" + data[d]["change"] + "</li>" + "<li>" + "$" + data[d]["price"] + "</li>" + "<li>" + data[d]["changesPercentage"] + "%" +"</li>" + "</ul>";
+    gainerDiv.innerHTML = "<h3>" + data[d]["name"] + "</h3>" + "<ul>" + "<li>" + data[d]["symbol"] + "</li>" + "<li>" + data[d]["change"] + "</li>" + "<li>" + "$" + data[d]["price"] + "</li>" + "<li>" + data[d]["changesPercentage"] + "%" + "</li>" + "</ul>";
   }
 }
 
@@ -202,5 +203,3 @@ window.onload = function () {
   css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
   document.body.appendChild(css);
 };
-}
-  
