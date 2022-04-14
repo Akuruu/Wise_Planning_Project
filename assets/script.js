@@ -104,7 +104,6 @@ function stockArticles() {
 }
 stockArticles();
 
-
 //show news in the main page 
 function handleArticleData(data) {
   console.log(data);
@@ -203,6 +202,4 @@ window.onload = function () {
   css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
   document.body.appendChild(css);
 };
-
-    }
   
