@@ -81,11 +81,12 @@ function polyData(ticker) {
 }
 
 function handleTickerData(data) {
+  infoList.innerHTML = "";
   console.log(data);
   for (d in data["results"]) {
     var infoListDiv = document.createElement('div');
     infoList.append(infoListDiv);
-    infoListDiv.innerHTML = "<h3>" + data["results"][0]["T"] + "</h3>" + "<li>" + data["results"][0]["c"] + "</li>"+ "<p>" + data["results"][0]["h"] + "</p>";
+    infoListDiv.innerHTML = "<div class='ticker-list'>" + "<h3>Ticker: " + data["results"][0]["T"] + "</h3>" + "<ul>"+ "<li>Closed at: $" + data["results"][0]["c"] + "</li>" + "<li>Highest: $" + data["results"][0]["h"] + " ⬆" + "</li>" + "<li>Lowest: $" + data["results"][0]["l"] + " ⬇" + "</li>" +"</ul>"+"</div>";
   }
 }
 
@@ -113,7 +114,17 @@ function handleArticleData(data) {
   for (d in data["content"]) {
     var articleDiv = document.createElement('div');
     articleCard.append(articleDiv);
-    articleDiv.innerHTML = "<h3>" + data["content"][d]["title"] + "</h3>" + "<a href='" + data["content"][d]["link"] + "'>" + " Read full article" + "</a>" + "<p>" + data["content"][d]["date"] + "</p>";
+    articleDiv.className = "columns";
+    articleDiv.innerHTML = `
+      <div class="column is-one-quarter">
+        <img src="${data["content"][d]["image"]}" class="article-img" />
+      </div>
+      <div class="column">
+        <h3>${data["content"][d]["title"]}</h3>
+        <p><a href="${data["content"][d]["link"]}">Read full article</a> written by: ${data["content"][d]["author"]}.</p>
+        <p class="article-date">${data["content"][d]["date"]}</p>
+      </div>
+    `;
   }
 }
 
@@ -135,13 +146,13 @@ getGainers();
 function displayGainers(data) {
   console.log(data);
   var titleGainer = document.createElement('h2');
-  titleGainer.innerHTML = "Most Gainer Stock Companies";
+  titleGainer.innerHTML = "Most Gainer Stocks";
   titleArtGainers.prepend(titleGainer);
   for (d in data.slice(0, 5)) {
     console.log(data[d]);
     var gainerDiv = document.createElement('div');
     gainerCard.append(gainerDiv);
-    gainerDiv.innerHTML = "<h3>" + data[d]["name"] + "</h3>" + "<ul>" + "<li>" + data[d]["symbol"] + "</li>" + "<li>" + data[d]["change"] + "</li>" + "<li>" + "$" + data[d]["price"] + "</li>" + "<li>" + data[d]["changesPercentage"] + "%" +"</li>" + "</ul>";
+    gainerDiv.innerHTML = "<h3>" + data[d]["name"] + "</h3>" + "<ul>" + "<li>Ticker: " + data[d]["symbol"] + "</li>" + "<li> Closed at: $" + data[d]["price"] + "</li>" + "<li>Gain: " + data[d]["changesPercentage"] + "% ⬆" + "</li>" + "</ul>";
   }
 }
 
@@ -202,4 +213,3 @@ window.onload = function () {
   css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
   document.body.appendChild(css);
 };
-  
