@@ -4,7 +4,8 @@ let infoList = document.querySelector('#info-list');
 let articleCard = document.querySelector('#article');
 let gainerCard = document.querySelector('#gainer');
 let titleArticle = document.querySelector('#title-article');
-let titleArtGainers = document.querySelector('#title-gainer')
+let titleArtGainers = document.querySelector('#title-gainer');
+let notificationDiv = document.querySelector('.notification');
 
 
 submitBtn.addEventListener('click', retrieve);
@@ -15,11 +16,13 @@ function retrieve(e) {
   gainerCard.innerHTML = "";
   titleArtGainers.innerHTML = "";
   titleArticle.innerHTML = "";
+  // notificationDiv.innerHTML = "";
 
-  if (input.value == '') {
-    alert('Input field is empty')
-    return
-  }
+  //message alert code needs to be re-written. 
+  // if (input.value == '') {
+  //   notificationDiv.document.write("Please enter a company name.");
+  //   return
+  // }
 
   // const apiKey - Evelyn FMP = '0d784df591c50ec5f238976a008df8c3'
   let searchTerm = input.value;
