@@ -4,6 +4,7 @@
   --main-nav-bg-color: rgb(252, 252, 252);
   --main-logo-green: rgb(134, 191, 115);
   --main-font-hover: rgb(116, 116, 114);
+  --main-light-bg: #f8f5f5; 
 }
 
 footer a {
@@ -41,7 +42,8 @@ h2 {
 h3 {
   font-weight: bold;
   color: var(--main-logo-green);
-  background-color: var(--main-font-hover);
+  margin-bottom: 15px;
+  margin-top: 20px;
 }
 
 .img {
@@ -117,36 +119,44 @@ h3 {
 }
 
 /* DRY refactor*/
-#info-list {
+#ticker-list {
+  background-color: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
+    0 0 0 1px rgb(10 10 10 / 2%);
+  color: #4a4a4a;
+  padding: 15px;
+  position: relative;
+}
+
+#article, #gainer {
+  background-color: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
+    0 0 0 1px rgb(10 10 10 / 2%);
+  color: #4a4a4a;
+  padding: 15px;
+  position: relative;
+}
+
+.article-img {
+  width: 100px;
+  height: 100px;
+}
+
+.article-date {
+  font-size: 10px;
+}
+
+.ticker-icon {
   color: var(--main-logo-green);
 }
 
-#title-article {
-  background-color: var(--main-font-hover);
-  color: rgb(242, 236, 236);
-}
-
-#title-loser {
-  background-color: var(--main-font-hover);
-  color: rgb(242, 236, 236);
-}
-
-#article {
+/* #loser {
   background-color: #fff;
   border-radius: 0.25rem;
   box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
     0 0 0 1px rgb(10 10 10 / 2%);
   color: #4a4a4a;
-  max-width: 100%;
   position: relative;
-}
-
-#loser {
-  background-color: #fff;
-  border-radius: 0.25rem;
-  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
-    0 0 0 1px rgb(10 10 10 / 2%);
-  color: #4a4a4a;
-  max-width: 100%;
-  position: relative;
-}
+} */
