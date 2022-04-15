@@ -19,7 +19,8 @@ This website will display gains and losses along with related articles on the ma
 </p>
 
 <h2 style="border-bottom: solid white .5px;">Website<h2>
-<!--insert gifs of website: 1 for each page-->
+
+<img src ="./assets/image/mainpage.gif">
 <img src ="./assets/image/aboutUsPage.gif">
 
 
